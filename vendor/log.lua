@@ -1,4 +1,3 @@
-
 vlog_queue = {}
 
 function vendor_log_queue(name,line)
@@ -13,7 +12,7 @@ function write_vendor_log(again)
 minetest.log("action","Writing vendor log queue to file")
 	for name,log_lines in pairs(vlog_queue) do
 		local logfile = minetest.get_worldpath().."/vendor_logs/"..name..".csv"
-		local f = io.open(logfile, "a+")
+		local f = assert (io.open(logfile, "a+"))
 		for _,line in pairs(log_lines) do
 			local csv_line = line.date..",\""..line.pos.."\","..line.action..","..line.from..","..line.qty..","..line.desc..","..line.amount.."\r\n"
 			f:write(csv_line)
